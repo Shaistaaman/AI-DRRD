@@ -1,0 +1,18 @@
+# Server Configuration
+PORT=5000
+NODE_ENV=development
+
+# Database Configuration
+# MongoDB for portfolio data
+MONGO_URI=mongodb://localhost:27017/aidrrd
+
+# PostgreSQL with PostGIS for spatial data
+PG_HOST=localhost
+PG_PORT=5432
+PG_DATABASE=aidrrd
+PG_USER=postgres
+PG_PASSWORD=password
+
+# Climate Data API
+CLIMATE_API_URL=https://api.example.com/climate
+CLIMATE_API_KEY=YOUR_API_KEY_HERE
