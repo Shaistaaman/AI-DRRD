@@ -1,0 +1,14 @@
+region,hazard_type,expected_loss,latitude,longitude
+Miami-Dade FL,flood,8750000,25.7617,-80.1918
+Houston TX,flood,6200000,29.7604,-95.3698
+New Orleans LA,flood,5800000,29.9511,-90.0715
+New York NY,flood,4500000,40.7128,-74.0060
+San Francisco CA,fire,7200000,37.7749,-122.4194
+Los Angeles CA,fire,6800000,34.0522,-118.2437
+Denver CO,fire,5100000,39.7392,-104.9903
+Seattle WA,wind,4800000,47.6062,-122.3321
+Chicago IL,wind,4200000,41.8781,-87.6298
+Boston MA,wind,3900000,42.3601,-71.0589
+Phoenix AZ,heat,5500000,33.4484,-112.0740
+Las Vegas NV,heat,4900000,36.1699,-115.1398
+Dallas TX,heat,4300000,32.7767,-96.7970

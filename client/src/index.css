@@ -1,0 +1,77 @@
+body {
+  margin: 0;
+  font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', 'Roboto', 'Oxygen',
+    'Ubuntu', 'Cantarell', 'Fira Sans', 'Droid Sans', 'Helvetica Neue',
+    sans-serif;
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+}
+
+code {
+  font-family: source-code-pro, Menlo, Monaco, Consolas, 'Courier New',
+    monospace;
+}
+
+.leaflet-container {
+  border-radius: 12px;
+}
+
+.risk-marker {
+  width: 20px;
+  height: 20px;
+  border-radius: 50%;
+  cursor: pointer;
+  transition: all 0.3s ease;
+}
+
+.risk-marker:hover {
+  transform: scale(1.2);
+}
+
+.risk-marker.high {
+  background-color: rgba(244, 67, 54, 0.8);
+  border: 2px solid #d32f2f;
+}
+
+.risk-marker.medium {
+  background-color: rgba(255, 152, 0, 0.8);
+  border: 2px solid #ed6c02;
+}
+
+.risk-marker.low {
+  background-color: rgba(76, 175, 80, 0.8);
+  border: 2px solid #2e7d32;
+}
+
+.chart-container {
+  height: 300px;
+  width: 100%;
+}
+
+.animate-fade-in {
+  animation: fadeIn 0.5s ease-in;
+}
+
+.animate-slide-up {
+  animation: slideUp 0.5s ease-out;
+}
+
+.animate-pulse {
+  animation: pulse 2s infinite;
+}
+
+@keyframes fadeIn {
+  from { opacity: 0; }
+  to { opacity: 1; }
+}
+
+@keyframes slideUp {
+  from { transform: translateY(20px); opacity: 0; }
+  to { transform: translateY(0); opacity: 1; }
+}
+
+@keyframes pulse {
+  0% { transform: scale(1); }
+  50% { transform: scale(1.05); }
+  100% { transform: scale(1); }
+}

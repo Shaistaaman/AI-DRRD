@@ -1,0 +1,6 @@
+region_name,loan_count,total_value
+Northeast,300,95000000
+Southeast,450,125000000
+Midwest,200,55000000
+Southwest,150,45000000
+West,150,55000000

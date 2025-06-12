@@ -1,0 +1,11 @@
+loan_id,address,value,ltv,risk_level,region
+L001,123 Ocean Dr Miami FL,450000,0.68,high,Southeast
+L002,456 Biscayne Blvd Miami FL,320000,0.72,medium,Southeast
+L003,789 Collins Ave Miami FL,275000,0.65,low,Southeast
+L004,321 Main St Houston TX,380000,0.75,high,Southwest
+L005,654 Travis St Houston TX,290000,0.70,medium,Southwest
+L006,987 Market St San Francisco CA,850000,0.80,medium,West
+L007,543 Pine St Seattle WA,520000,0.75,low,West
+L008,876 Broadway New York NY,920000,0.78,medium,Northeast
+L009,234 Michigan Ave Chicago IL,410000,0.72,low,Midwest
+L010,567 Peachtree St Atlanta GA,350000,0.71,high,Southeast

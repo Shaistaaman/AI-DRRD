@@ -1,0 +1,5 @@
+hazard_id,name,description
+flood,Flooding,River and coastal flooding events
+fire,Wildfire,Forest and brush fire events
+wind,Windstorm,Hurricane tornado and high wind events
+heat,Heatwave,Extreme temperature events

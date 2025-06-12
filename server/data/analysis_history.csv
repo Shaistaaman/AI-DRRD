@@ -1,0 +1,6 @@
+analysis_id,timestamp,hazard_type,return_period,total_expected_loss,affected_properties,percentage_of_portfolio,ltv_impact
+analysis-1,2023-11-01T10:15:30Z,flood,100,32500000,342,0.087,0.032
+analysis-2,2023-11-01T14:22:15Z,fire,50,18700000,215,0.050,0.018
+analysis-3,2023-11-02T09:45:22Z,wind,75,24300000,278,0.065,0.025
+analysis-4,2023-11-03T11:30:45Z,heat,25,12500000,180,0.033,0.012
+analysis-5,2023-11-04T16:18:10Z,flood,50,19800000,225,0.053,0.020
