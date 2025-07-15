@@ -1,5 +1,6 @@
 # dependencies
 /node_modules
+/presentation
 /client/node_modules
 /.pnp
 .pnp.js
