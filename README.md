@@ -4,15 +4,15 @@ A comprehensive climate physical risk assessment platform designed for financial
 
 ## Overview
 
-AIDRRD provides enterprise-grade climate risk analytics for mortgage portfolios, implementing methodologies aligned with OS-Climate's physrisk framework and TCFD recommendations. The platform transforms complex climate data into actionable financial risk insights.
+AIDRRD provides enterprise-grade climate risk analytics for mortgage portfolios, implementing methodologies aligned with OS-Climate's physrisk framework. The platform transforms complex climate data into actionable financial risk insights.
 
 ### Core Capabilities
 
 - **Portfolio Risk Assessment**: Comprehensive loan-level risk analysis using industry-standard GSE data schemas
 - **Climate Hazard Integration**: Multi-hazard risk modeling (flood, wildfire, hurricane, heat stress)
 - **Scenario Analysis**: Forward-looking climate projections with RCP/SSP pathway integration
-- **Regulatory Compliance**: TCFD, CCAR, and Basel III aligned risk reporting
-- **Real-time Analytics**: Sub-second portfolio risk calculations with 99.9% uptime SLA
+- **Regulatory Compliance**: OS-Climate's physrisk framework
+- **Real-time Analytics**: Portfolio risk calculations
 
 ## Technical Architecture
 
