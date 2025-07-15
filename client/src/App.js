@@ -24,8 +24,8 @@ function App() {
           <AnimatePresence mode="wait">
             <Routes>
               <Route path="/" element={<Dashboard />} />
-              <Route path="/portfolio" element={<PortfolioAnalysis />} />
               <Route path="/portfolio-upload" element={<PortfolioUpload />} />
+              <Route path="/portfolio" element={<PortfolioAnalysis />} />
               <Route path="/risk-map" element={<RiskMap />} />
               <Route path="/weather-risk" element={<WeatherRiskPage />} />
               <Route path="/scenario-builder" element={<ScenarioBuilder />} />

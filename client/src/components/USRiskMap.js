@@ -1,33 +1,9 @@
 import React, { useState } from 'react';
-import { MapContainer, TileLayer, Marker, Popup, Circle, Tooltip } from 'react-leaflet';
+import { MapContainer, TileLayer, Marker, Popup, Tooltip } from 'react-leaflet';
 import { Box, Typography, Paper, Chip } from '@mui/material';
 import L from 'leaflet';
 
-// Sample data for properties across the US
-const sampleProperties = [
-  // Miami
-  { id: 1, lat: 25.7617, lng: -80.1918, risk: 'high', value: 450000, address: '123 Ocean Dr, Miami, FL' },
-  { id: 2, lat: 25.7827, lng: -80.2094, risk: 'medium', value: 320000, address: '456 Biscayne Blvd, Miami, FL' },
-  // Houston
-  { id: 4, lat: 29.7604, lng: -95.3698, risk: 'high', value: 380000, address: '321 Main St, Houston, TX' },
-  { id: 5, lat: 29.7633, lng: -95.3633, risk: 'medium', value: 290000, address: '654 Travis St, Houston, TX' },
-  // New Orleans
-  { id: 6, lat: 29.9511, lng: -90.0715, risk: 'high', value: 410000, address: '789 Canal St, New Orleans, LA' },
-  // New York
-  { id: 7, lat: 40.7128, lng: -74.0060, risk: 'medium', value: 950000, address: '123 Broadway, New York, NY' },
-  // San Francisco
-  { id: 8, lat: 37.7749, lng: -122.4194, risk: 'low', value: 1250000, address: '456 Market St, San Francisco, CA' },
-  // Chicago
-  { id: 9, lat: 41.8781, lng: -87.6298, risk: 'medium', value: 520000, address: '789 Michigan Ave, Chicago, IL' },
-  // Seattle
-  { id: 10, lat: 47.6062, lng: -122.3321, risk: 'low', value: 680000, address: '123 Pike St, Seattle, WA' },
-  // Denver
-  { id: 11, lat: 39.7392, lng: -104.9903, risk: 'medium', value: 450000, address: '456 16th St, Denver, CO' },
-  // Phoenix
-  { id: 12, lat: 33.4484, lng: -112.0740, risk: 'high', value: 380000, address: '789 Central Ave, Phoenix, AZ' }
-];
-
-// Risk zones across the US
+// Risk zones across the US (kept for future features)
 const riskZones = [
   // Miami (Flood)
   { id: 1, lat: 25.77, lng: -80.20, risk: 'high', radius: 30000, hazard: 'flood', region: 'Florida', affectedProperties: 120, expectedLoss: 25000000 },
@@ -72,9 +48,9 @@ const createRiskMarkerIcon = (risk) => {
   });
 };
 
-const USRiskMap = ({ hazardType = 'all', timeframe = 2050, mapStyle = 'map' }) => {
+const USRiskMap = ({ hazardType = 'all', timeframe = 2050, mapStyle = 'map', portfolioData = [] }) => {
   const [selectedProperty, setSelectedProperty] = useState(null);
-  
+
   // US center coordinates
   const usCenter = [39.8283, -98.5795];
   const zoom = 4;
@@ -82,28 +58,6 @@ const USRiskMap = ({ hazardType = 'all', timeframe = 2050, mapStyle = 'map' }) =
   const handleMarkerClick = (property) => {
     setSelectedProperty(property);
   };
-
-  // Filter risk zones based on hazard type
-  const filteredRiskZones = riskZones.filter(zone => {
-    return hazardType === 'all' || zone.hazard === hazardType;
-  }).map(zone => {
-    // Adjust radius based on timeframe to simulate increasing risk
-    let radiusMultiplier = 1;
-    if (timeframe === 2050) radiusMultiplier = 1.5;
-    if (timeframe === 2100) radiusMultiplier = 2.2;
-    
-    // Also adjust expected loss based on timeframe
-    let lossMultiplier = 1;
-    if (timeframe === 2050) lossMultiplier = 1.8;
-    if (timeframe === 2100) lossMultiplier = 3.2;
-    
-    return {
-      ...zone,
-      radius: zone.radius * radiusMultiplier,
-      expectedLoss: zone.expectedLoss * lossMultiplier,
-      affectedProperties: Math.round(zone.affectedProperties * (1 + (radiusMultiplier - 1) * 0.7))
-    };
-  });
 
   // Map style URLs
   const mapStyles = {
@@ -114,58 +68,24 @@ const USRiskMap = ({ hazardType = 'all', timeframe = 2050, mapStyle = 'map' }) =
 
   // Get the appropriate tile layer URL based on mapStyle
   const tileLayerUrl = mapStyles[mapStyle] || mapStyles.map;
-  const attribution = mapStyle === 'map' 
+  const attribution = mapStyle === 'map'
     ? '&copy; <a href="https://www.openstreetmap.org/copyright">OpenStreetMap</a> contributors'
     : '&copy; <a href="https://www.arcgis.com/">ArcGIS</a>';
 
-  // Format currency
-  const formatCurrency = (value) => {
-    return new Intl.NumberFormat('en-US', {
-      style: 'currency',
-      currency: 'USD',
-      minimumFractionDigits: 0,
-      maximumFractionDigits: 0
-    }).format(value);
-  };
-
   return (
     <Box sx={{ height: 500, position: 'relative' }}>
-      <MapContainer 
-        center={usCenter} 
-        zoom={zoom} 
+      <MapContainer
+        center={usCenter}
+        zoom={zoom}
         style={{ height: '100%', width: '100%', borderRadius: '12px' }}
       >
         <TileLayer
           attribution={attribution}
           url={tileLayerUrl}
         />
-        
-        {/* Risk zone circles */}
-        {filteredRiskZones.map(zone => (
-          <Circle
-            key={zone.id}
-            center={[zone.lat, zone.lng]}
-            radius={zone.radius}
-            pathOptions={{
-              fillColor: riskColors[zone.risk],
-              fillOpacity: 0.3,
-              color: riskColors[zone.risk],
-              opacity: 0.8
-            }}
-          >
-            <Tooltip direction="center" permanent={false} sticky>
-              <div>
-                <strong>{zone.hazard.charAt(0).toUpperCase() + zone.hazard.slice(1)} Risk Zone - {zone.region}</strong><br />
-                Risk Level: {zone.risk.toUpperCase()}<br />
-                Affected Properties: {zone.affectedProperties}<br />
-                Expected Loss: {formatCurrency(zone.expectedLoss)}
-              </div>
-            </Tooltip>
-          </Circle>
-        ))}
-        
-        {/* Property markers */}
-        {sampleProperties.map(property => (
+
+        {/* Property markers from real portfolio data only */}
+        {portfolioData.length > 0 && portfolioData.map(property => (
           <Marker
             key={property.id}
             position={[property.lat, property.lng]}
@@ -175,7 +95,10 @@ const USRiskMap = ({ hazardType = 'all', timeframe = 2050, mapStyle = 'map' }) =
             }}
           >
             <Tooltip direction="top" offset={[0, -10]} opacity={1.0}>
-              {property.address}
+              <div>
+                <strong>{property.address}</strong><br />
+                Lat: {property.lat?.toFixed(4)}, Lng: {property.lng?.toFixed(4)}
+              </div>
             </Tooltip>
             {selectedProperty && selectedProperty.id === property.id && (
               <Popup>
@@ -189,10 +112,13 @@ const USRiskMap = ({ hazardType = 'all', timeframe = 2050, mapStyle = 'map' }) =
                   <Typography variant="body2" gutterBottom>
                     Value: ${property.value.toLocaleString()}
                   </Typography>
-                  <Chip 
+                  <Typography variant="body2" gutterBottom>
+                    Coordinates: {property.lat?.toFixed(4)}, {property.lng?.toFixed(4)}
+                  </Typography>
+                  <Chip
                     label={`${property.risk.toUpperCase()} RISK`}
                     size="small"
-                    sx={{ 
+                    sx={{
                       bgcolor: `${riskColors[property.risk]}`,
                       color: 'white',
                       mt: 1
@@ -204,7 +130,7 @@ const USRiskMap = ({ hazardType = 'all', timeframe = 2050, mapStyle = 'map' }) =
           </Marker>
         ))}
       </MapContainer>
-      
+
       <Box
         sx={{
           position: 'absolute',

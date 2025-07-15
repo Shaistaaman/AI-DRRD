@@ -37,8 +37,8 @@ const drawerWidth = 240;
 
 const menuItems = [
   { text: 'Dashboard', icon: <DashboardIcon />, path: '/' },
-  { text: 'Portfolio Analysis', icon: <AccountBalanceIcon />, path: '/portfolio' },
   { text: 'Upload Portfolio', icon: <CloudUploadIcon />, path: '/portfolio-upload' },
+  { text: 'Portfolio Analysis', icon: <AccountBalanceIcon />, path: '/portfolio' },
   { text: 'Risk Map', icon: <MapIcon />, path: '/risk-map' },
   { text: 'Weather Risk', icon: <ThunderstormIcon />, path: '/weather-risk' },
   { text: 'Scenario Builder', icon: <ScienceIcon />, path: '/scenario-builder' },
